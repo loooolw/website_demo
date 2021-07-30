@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>欢迎来到JJ的主页</title>
+    <meta charset="UTF-8">
+    <script>
+        function pageScroll(){
+            //把内容滚动指定的像素数（第一个参数是向右滚动的像素数，第二个参数是向下滚动的像素数）
+            window.scrollBy(0,-100);
+            //延时递归调用，模拟滚动向上效果
+            scrolldelay = setTimeout('pageScroll()',100);
+            //获取scrollTop值，声明了DTD的标准网页取document.documentElement.scrollTop，否则取document.body.scrollTop；因为二者只有一个会生效，另一个就恒为0，所以取和值可以得到网页的真正的scrollTop值
+            var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+            //判断当页面到达顶部，取消延时代码（否则页面滚动到顶部会无法再向下正常浏览页面）
+            if(sTop==0) clearTimeout(scrolldelay);
+        }
+    </script>
+    <style>
+        /*整体背景*/
+        body {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            /*background-repeat: no-repeat;*/
+            background-image: url("images/背景图1.jpg");
+            background-repeat: repeat-y;
+            /*background-color: rgba(0, 0, 0, 0.76);*/
+            /*background:linear-gradient(to right, #bb313e25, #bb313e25, #d7222925, #dd4a1625, #e4761525, #f5c50025, #f0e92725, #b1ce2425, #48a93525, #03944525, #157c4f25, #176a5825, #1b556325, #1d386f25, #1d386f25, #20277825, #52266325, #8a244b25);*/
+        }
+
+        .background {
+            width: 1000px;
+        }
+        audio{
+            width: 240px;
+            float: right;
+        }
+
+        * {
+            margin: 0 auto;
+        }
+
+        .top {
+            height: 400px;
+            background: #f7f7f7;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        .slider-container {
+            width: 100%;
+            position: relative;
+        }
+
+        .slider,
+        .slider-item {
+            padding-bottom: 40%;
+        }
+
+        .slider-item {
+            position: absolute;
+            /* 父辈.slider默认继承了.slide-container的宽度 */
+            width: 100%;
+            /* 相当于background-size: 100% auto */
+            background-size: 100%;
+            animation: fade 20s linear;
+            animation-iteration-count: infinite;
+        }
+
+        /* 设置背景图片 */
+        .slider-item1 {
+            margin-left: -40px;
+            background-image: url(images/微信图片_20191023111459.jpg);
+        }
+
+        .slider-item2 {
+            margin-left: -40px;
+            background-image: url(images/微信图片_20191023111401.jpg);
+        }
+
+        .slider-item3 {
+            margin-left: -40px;
+            background-image: url(images/微信图片_20191023111522.jpg);
+        }
+
+        .slider-item4 {
+            margin-left: -40px;
+            background-image: url(images/微信图片_20191023111731.jpg);
+        }
+
+        .slider-item5 {
+            margin-left: -40px;
+            background-image: url(images/微信图片_20191023111722.jpg);
+        }
+
+        /* 设置动画 */
+        @keyframes fade {
+            0% {
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            25% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .slider-item {
+            opacity: 0;
+        }
+
+        .slider-item1 {
+            animation-delay: -1s;
+        }
+
+        .slider-item2 {
+            animation-delay: 3s;
+        }
+
+        .slider-item3 {
+            animation-delay: 7s;
+        }
+
+        .slider-item4 {
+            animation-delay: 11s;
+        }
+
+        .slider-item5 {
+            animation-delay: 15s;
+        }
+
+        .focus-container {
+            position: absolute;
+            bottom: 2%;
+            z-index: 7;
+            left: 50%;
+            margin-left: -45px;
+        }
+
+        .focus-container li {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            float: left;
+            margin-right: 10px;
+            background: #fff;
+        }
+
+        .focus-item {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            opacity: 0;
+            background: #51B1D9;
+            border-radius: inherit;
+            animation-duration: 20s;
+            animation-timing-function: linear;
+            animation-name: fade;
+            animation-iteration-count: infinite;
+        }
+
+        .focus-item1 {
+            animation-delay: -1s;
+        }
+
+        .focus-item2 {
+            animation-delay: 3s;
+        }
+
+        .focus-item3 {
+            animation-delay: 7s;
+        }
+
+        .focus-item4 {
+            animation-delay: 11s;
+        }
+
+        .focus-item5 {
+            animation-delay: 15s;
+        }
+
+        /*导航栏*/
+        .nav {
+            height: 40px;
+            background-color: rgba(28,28,34,1);
+        }
+
+        .navlist {
+            height: 40px;
+            width: 166px;
+            float: left;
+            /*background-color: grey;*/
+            line-height: 40px;
+            text-align: center;
+            font-family: "SimSun-ExtB";
+        }
+
+        .navlist a {
+            text-decoration: none;
+            color: ghostwhite;
+        }
+
+        .navlist:hover {
+            background-color: rgba(147, 143, 156, 0.91);
+            font-size: 15px;
+        }
+
+        /*主体*/
+        .body {
+            height: 400px;
+        }
+
+        /*左边栏*/
+        .slideleft {
+            width: 300px;
+            height: 400px;
+            float: left;
+            background-color: #fffae2;
+        }
+
+        /*左边栏*/
+        .slideleftt {
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            background-size: cover;
+            background-image: url(images/微信图片_20191023111034.jpg);
+        }
+
+        /*中间视频*/
+        .center {
+            width: 500px;
+            height: 400px;
+            float: left;
+            background-color: #fffae2;
+        }
+
+        /*右边栏*/
+        .slideright {
+            width: 200px;
+            height: 400px;
+            float: left;
+            background-color: rgba(28,28,34,1);
+        }
+
+        .small_slideright {
+            width: 200px;
+            height: 40px;
+        }
+
+        /*右侧序号*/
+        .serial {
+            width: 30px;
+            height: 30px;
+            float: left;
+            margin: 5px;
+            background-size: cover;
+            /*position: relative;*/
+        }
+
+        #serial1 {
+            background-image: url("images/1.png");
+        }
+
+        #serial2 {
+            background-image: url("images/2.png");
+        }
+
+        #serial3 {
+            background-image: url("images/3.png");
+        }
+
+        #serial4 {
+            background-image: url("images/4.png");
+        }
+
+        #serial5 {
+            background-image: url("images/5.png");
+        }
+
+        #serial6 {
+            background-image: url("images/6.png");
+        }
+
+        #serial7 {
+            background-image: url("images/7.png");
+        }
+
+        #serial8 {
+            background-image: url("images/8.png");
+        }
+
+        #serial9 {
+            background-image: url("images/9.png");
+        }
+
+        #serial10 {
+            background-image: url("images/10.png");
+        }
+
+        /*图标旋转*/
+
+        .trans-rotate {
+            -webkit-transition: transform .25s linear;
+            -moz-transition: transform .25s linear;
+            -o-transition: transform .25s linear;
+            transition: transform .25s linear;
+        }
+
+        /* 加上这个样式后，才会在0.25秒内旋转完毕。否则只会显示立刻旋转完的结果 */
+        #serial1:hover {
+            transform: rotate(360deg);
+        }
+
+        /* 鼠标移上去后，旋转*/
+        #serial2:hover {
+            transform: rotate(360deg);
+        }
+
+        #serial3:hover {
+            transform: rotate(360deg);
+        }
+
+        #serial4:hover {
+            transform: rotate(360deg);
+        }
+
+        #serial5:hover {
+            transform: rotate(360deg);
+        }
+
+        #serial6:hover {
+            transform: rotate(360deg);
+        }
+
+        #serial7:hover {
+            transform: rotate(360deg);
+        }
+
+        #serial8:hover {
+            transform: rotate(360deg);
+        }
+
+        #serial9:hover {
+            transform: rotate(360deg);
+        }
+
+        #serial10:hover {
+            transform: rotate(360deg);
+        }
+
+        .slideright p {
+            width: 200px;
+            height: 40px;
+            font-size: 13px;
+            line-height: 50px;
+            text-indent: 5px;
+            background-color: rgba(28,28,34,1);
+            /*position: absolute;*/
+        }
+        .slideright p a{
+            color:ghostwhite;
+        }
+
+        .buttom {
+            height: 300px;
+            background-color: rgba(28,28,34,1);
+        }
+
+        .buttomleft {
+            height: 200px;
+            width: 150px;
+            float: left;
+            padding: 0px 75px 50px 75px;
+        }
+
+        .authod {
+            height: 200px;
+            width: 100%;
+            margin: 0 auto;
+            background-image: url("images/作者.jpg");
+            background-size: cover;
+        }
+        .authod:hover{
+            height: 200px;
+            width: 100%;
+            margin: 0 auto;
+            background-image: url("images/自我介绍.jpg");
+            background-size: cover;
+        }
+
+        .authodtop {
+            width: 150px;
+            height: 50px;
+            background: rgba(28,28,34,1);
+            font-family: "微软雅黑", "黑体", "宋体";
+            font-size: 20px;
+            line-height: 50px;
+            text-indent: 30px;
+            color: ghostwhite;
+        }
+
+        .name span {
+            height: 25px;
+            width: 300px;
+            float: left;
+            margin-left: -75px;
+            background: rgba(28,28,34,1);
+            font-family: "微软雅黑", "黑体", "宋体";
+            font-size: 14px;
+            line-height: 30px;
+            text-indent: 105px;
+            color: ghostwhite;
+        }
+
+        .detail {
+            width: 700px;
+            height: 300px;
+            float: right;
+            background: rgba(28,28,34,1);
+        }
+
+        /*.detailcon {*/
+        /*    width: 700px;*/
+        /*    height: 250px;*/
+        /*    background-color: #fffae2;*/
+        /*    margin: 50px 30px 30px 0px;*/
+        /*}*/
+         .detail button{
+            float: right;
+            border: none;
+            /*color: ghostwhite;*/
+            font-family:Arial;
+            padding: 5px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            margin: 0px 2px;
+            cursor: pointer;
+
+        }
+        .detail p {
+            text-indent: 2em;
+            font-family: "微软雅黑", "黑体", "宋体";
+            font-size: 16px;
+            line-height: 30px;
+            color: ghostwhite;
+        }
+        .footer{
+            width: 1000px;
+            height: 400px;
+            background-image: url("./images/底部.png");
+            background-size: cover;
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+<audio src="./images/林俊杰 - 将故事写成我们.mp3" controls="controls" autoplay loop>
+</audio>
+<div class="background">
+
+    <!--顶部轮播图-->
+
+    <div class="top">
+        <section class="slider-container">
+            <!-- 轮播器 -->
+            <ul class="slider">
+                <li class="slider-item slider-item1"></li>
+                <li class="slider-item slider-item2"></li>
+                <li class="slider-item slider-item3"></li>
+                <li class="slider-item slider-item4"></li>
+                <li class="slider-item slider-item5"></li>
+            </ul>
+            <!-- 轮播焦点 -->
+            <div class="focus-container">
+                <ul class="floatfix">
+                    <li>
+                        <div class="focus-item focus-item1"></div>
+                    </li>
+                    <li>
+                        <div class="focus-item focus-item2"></div>
+                    </li>
+                    <li>
+                        <div class="focus-item focus-item3"></div>
+                    </li>
+                    <li>
+                        <div class="focus-item focus-item4"></div>
+                    </li>
+                    <li>
+                        <div class="focus-item focus-item5"></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <!--导航栏-->
+    <div class="nav">
+        <div class="navlist"><a href="#">JJLin首页</a></div>
+        <div class="navlist"><a href="#">行走的CD</a></div>
+        <div class="navlist"><a href="#">盛世美颜</a></div>
+        <div class="navlist"><a href="#">有趣的灵魂</a></div>
+        <div class="navlist"><a href="#">JJLin语录</a></div>
+        <div class="navlist"><a href="#">JJLin潮牌</a></div>
+    </div>
+    <div class="body">
+        <!--左侧栏目-->
+        <div class="slideleft">
+            <!--左上栏JJ介绍-->
+            <div class="slideleftt"></div>
+        </div>
+        <!--中间栏目-->
+        <div class="center">
+            <!--视频-->
+            <div style="width: 500px;height: 400px;">
+                <video width="500" height="400" src="images/沙雕视频.mp4" preload="none"
+                       controls="controls"/>
+            </div>
+        </div>
+        <!--右边广告栏-->
+        <div class="slideright">
+            <div class="small_slideright">
+                <div class="serial trans-rotate" id="serial1"></div>
+                <p><a href="#">JJ荣获第15届台湾金曲奖</a></p>
+            </div>
+            <div class="small_slideright">
+                <div class="serial trans-rotate" id="serial2"></div>
+                <p><a href="#">JJ获台湾Hito流行音乐奖</a></p>
+            </div>
+            <div class="small_slideright">
+                <div class="serial trans-rotate" id="serial3"></div>
+                <p><a href="#">JJ获中国TOP排行榜奖项</a></p>
+            </div>
+            <div class="small_slideright">
+                <div class="serial trans-rotate" id="serial4"></div>
+                <p><a href="#">JJ荣获通商中国青年奖</a></p>
+            </div>
+            <div class="small_slideright">
+                <div class="serial trans-rotate" id="serial5"></div>
+                <p><a href="#">JJ荣获最佳国语男歌手</a></p>
+            </div>
+            <div class="small_slideright">
+                <div class="serial trans-rotate" id="serial6"></div>
+                <p><a href="#">JJ荣获最佳新人奖</a></p>
+            </div>
+            <div class="small_slideright">
+                <div class="serial trans-rotate" id="serial7"></div>
+                <p><a href="#">JJ获中国原创音乐流行榜奖</a></p>
+            </div>
+            <div class="small_slideright">
+                <div class="serial trans-rotate" id="serial8"></div>
+                <p><a href="#">JJ获全球华语歌曲排行榜奖</a></p>
+            </div>
+            <div class="small_slideright">
+                <div class="serial trans-rotate" id="serial9"></div>
+                <p><a href="#">JJ获新加坡词曲版权协会奖</a></p>
+            </div>
+            <div class="small_slideright">
+                <div class="serial trans-rotate" id="serial10"></div>
+                <p><a href="#">JJ荣获第15届台湾金曲奖</a></p>
+
+            </div>
+        </div>
+    </div>
+
+    <!--底部栏-->
+
+    <div class="buttom">
+        <div class="buttomleft">
+            <div class="authodtop">作者简介</div>
+            <div class="authod"></div>
+            <div class="name"><span>姓名：罗亮文</span><span>班级：计本7</span></div>
+        </div>
+        <div class="detail">
+                <p>JJLin语录</p>
+                <p>"音乐是一个很活泼的东西，音乐也会伴随着人的个性而改变。随着自己的成长，对音乐的认识也会逐渐成长。"</p>
+                <p>"不想限制自己的音乐，喜欢在音乐上“玩”出一些新的东西，而且个性也是多面化的。 音乐可以让我更快乐，其实我一直都在‘玩’音乐，至于下一张唱片会有怎样的新东西，那要看到时候的兴趣在哪里。 希望能够成为一个真正的“乐行者”，让自己的好音乐可以被全世界听到。"</p>
+                <p>JJFans:"他把音樂和夢想當做能量
+                    壹路走到無人取代的地位他寫下華
+                    語樂壇最動人的經典樂章他是亞洲全能唱作天王"
+                </p>
+                <p>
+                    JJ粉丝们快来组织的怀抱！
+                    ➕wechat：17301978019
+                    我拉你进群！
+                </p>
+
+            <button onclick="pageScroll()">返回顶部</button>
+        </div>
+
+    </div>
+    <div class="footer">
+
+    </div>
+
+
+</div>
+</body>
+</html>
